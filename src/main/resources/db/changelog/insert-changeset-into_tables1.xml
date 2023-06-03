@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+        <changeSet id="insert-into-tables" author="Alex">
+        <insert tableName="skills">
+        <column name="id" value="1"/>
+        <column name="skill" value="Maven"/>
+        </insert>
+        <addForeignKeyConstraint baseColumnNames="skills" baseTableName="developers"
+              constraintName="fk_skill_id" referencedColumnNames="id" referencedTableName="skills"/>
+
+        <insert tableName="specialties">
+                <column name="id" value="1"/>
+                <column name="specialty_name" value="sql_developer"/>
+        </insert>
+        <insert tableName="specialties">
+                <column name="id" value="2"/>
+                <column name="specialty_name" value="java_developer"/>
+        </insert>
+        <insert tableName="specialties">
+                <column name="id" value="3"/>
+                <column name="specialty_name" value="devops"/>
+        </insert>
+        <addForeignKeyConstraint baseColumnNames="specialtyId" baseTableName="developers"
+                constraintName="fk_specialty_id" referencedColumnNames="id" referencedTableName="specialties"/>
+
+        <insert tableName="status">
+                <column name="id" value="1"/>
+                <column name="status_name" value="ACTIVE"/>
+        </insert>
+        <insert tableName="status">
+                <column name="id" value="2"/>
+                <column name="status_name" value="DELETED"/>
+        </insert>
+        <addUniqueConstraint tableName="status" columnNames="status_name"/>
+        <addForeignKeyConstraint baseColumnNames="status" baseTableName="developers"
+                constraintName="fk_status_name" referencedColumnNames="status_name" referencedTableName="status"/>
+        <insert tableName="developers">
+               <column name="id" value="1"/>
+               <column name="firstName" value="Alex"/>
+               <column name="lastName" value="Semkin"/>
+               <column name="skills" value="1"/>
+               <column name="specialtyId" value="2"/>
+               <column name="status" value="ACTIVE"/>
+        </insert>
+        </changeSet>
+        </databaseChangeLog>
